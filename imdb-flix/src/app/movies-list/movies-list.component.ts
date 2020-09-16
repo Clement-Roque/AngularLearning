@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {Movie} from '../movie'
 import {MOVIES} from '../mock-movies'
+import { MovieService } from '../movie.service'
 
 @Component({
   selector: 'app-movies-list',
@@ -10,11 +11,12 @@ import {MOVIES} from '../mock-movies'
 })
 export class MoviesListComponent implements OnInit {
 
-	movies: Movie[] = MOVIES;
+	movies: Movie[];
 
-  constructor() { }
+  constructor(private movieService : MovieService) { }
 
   ngOnInit(): void {
+  	this.movies = this.movieService.getTopMovies();
   }
 
 }

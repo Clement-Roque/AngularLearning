@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
+import { HomeComponent } from './home/home.component';
+import { BrowseComponent } from './browse/browse.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieInfoComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    HomeComponent,
+    BrowseComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
