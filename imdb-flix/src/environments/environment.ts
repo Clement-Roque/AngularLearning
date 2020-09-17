@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  MOVIE_API_KEY : 'k_hHJc0454',
+  MOVIE_API_BASE_URL : 'https://imdb-api.com/en/API/',
 };
 
 /*
