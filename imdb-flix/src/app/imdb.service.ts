@@ -24,13 +24,13 @@ export class ImdbService {
    //    map(imdbObject => imdbObject['items']),
   	// 	catchError(this.handleError<object[]>('getMostPopularMovie', [])));
 
-    return of(JSON_MOVIES);
+    return of(JSON_MOVIES)
 
   }
 
-  public getMovieDetail(movieId: string): Observable<any[]> {
+  public getMovieDetail(movieId: string): Observable<any> {
 
-    return of(JSON_MOVIES_PLOT.filter(movie=> movie.id===movieId));
+    return from(JSON_MOVIES_PLOT.filter(movie=> movie.id===movieId).map(movie=> movie.plot));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -13,7 +13,7 @@ function imdbObjectToMovie(imdbObject: any): Movie{
     id : imdbObject.id,
     fullTitle : imdbObject.fullTitle,
     image : imdbObject.image, 
-    plot : "Plot not available"
+    plot : "Not avalaible yet"
   };
 
   const movie: Movie = new Movie(imdbMovie); 
@@ -31,10 +31,10 @@ export class MovieService {
   getTopMovies(): Observable<Movie[]>{
 
   	return this.movieApiService.getMostPopularMovies().pipe(
-  		map(mostPopularMovies => mostPopularMovies.map(movie => imdbObjectToMovie(movie))));
-  }
+      map(mostPopularMovies => mostPopularMovies.map(movie => imdbObjectToMovie(movie))));
+   }
 
-  getMoviePlot(movieId: string): Observable<object[]>{
+  getMoviePlot(movieId: string): Observable<any> {
 
   	return this.movieApiService.getMovieDetail(movieId);
   }

@@ -7,7 +7,7 @@ export const MOVIES: Movie[] = [
 
 ]
 
-export const JSON_MOVIES: object[] = [
+export const JSON_MOVIES: any[] = [
    {id: "tt1375666",  fullTitle: "Inception (2010)" , image: "https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6791_AL_.jpg",},
    {id: "tt6723592",  fullTitle: "Tenet (2020)" , image: "https://imdb-api.com/images/original/MV5BYzg0NGM2NjAtNmIxOC00MDJmLTg5ZmYtYzM0MTE4NWE2NzlhXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_Ratio0.6791_AL_.jpg",},
    {id: "tt3778644",  fullTitle: "Solo: A Star Wars Story (2018)" , image: "https://imdb-api.com/images/original/MV5BOTM2NTI3NTc3Nl5BMl5BanBnXkFtZTgwNzM1OTQyNTM@._V1_Ratio0.6791_AL_.jpg",},
