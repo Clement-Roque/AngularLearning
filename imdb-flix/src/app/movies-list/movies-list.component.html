@@ -2,7 +2,7 @@
  	<h2>Trend</h2>
     <div class="col">
 		<ul class="list-group list-group-horizontal">
-			<li class="list-group-item" *ngFor="let movie of movies.slice(0,4)">
+			<li class="list-group-item" *ngFor="let movie of movies">
 				<app-movie-info [movie]="movie"></app-movie-info>
 			</li>
 		</ul>

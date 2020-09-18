@@ -1,22 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 import {Movie} from '../movie'
 import {MOVIES} from '../mock-movies'
 import { MovieService } from '../movie.service'
-
-function imdbObjectToMovie(imdbObject: any): Movie{
-
-  let imdbMovie = {
-    id : imdbObject.id,
-    fullTitle : imdbObject.fullTitle,
-    image : imdbObject.image, 
-    plot : "Not available"
-  };
-
-  const movie: Movie = new Movie(imdbMovie); 
-
-  return movie;
-}
 
 @Component({
   selector: 'app-movies-list',
@@ -27,7 +15,7 @@ function imdbObjectToMovie(imdbObject: any): Movie{
 
 export class MoviesListComponent implements OnInit {
 
-	movies: object[];
+	movies: Movie[];
 
   constructor(private MovieService : MovieService) { }
 
@@ -38,7 +26,7 @@ export class MoviesListComponent implements OnInit {
 
   getTopMovies():void{
 
-  	this.MovieService.getTopMovies().subscribe(movies => this.movies = movies.map(movie => imdbObjectToMovie(movie)))
+  	this.MovieService.getTopMovies().subscribe(movies => this.movies = movies);
   }
 
 }
