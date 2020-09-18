@@ -26,7 +26,7 @@ export class MoviesListComponent implements OnInit {
 
   getTopMovies():void{
 
-  	this.MovieService.getTopMovies().subscribe(movies => this.movies = movies);
+  	this.MovieService.getTopMovies().subscribe(topMovies => this.movies = topMovies);
   }
 
 }

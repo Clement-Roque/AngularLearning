@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable,forkJoin } from 'rxjs';
+import { mergeMap, map } from 'rxjs/operators';
 
 import {Movie} from './movie'
 import { MOVIES } from './mock-movies'
@@ -13,7 +13,7 @@ function imdbObjectToMovie(imdbObject: any): Movie{
     id : imdbObject.id,
     fullTitle : imdbObject.fullTitle,
     image : imdbObject.image, 
-    plot : "Not avalaible yet"
+    plot : imdbObject.plot
   };
 
   const movie: Movie = new Movie(imdbMovie); 
@@ -28,13 +28,15 @@ export class MovieService {
 
   constructor(private movieApiService: ImdbService) { }
 
-  getTopMovies(): Observable<Movie[]>{
+  getTopMovies(): Observable<any[]>{
 
-  	return this.movieApiService.getMostPopularMovies().pipe(
-      map(mostPopularMovies => mostPopularMovies.map(movie => imdbObjectToMovie(movie))));
+  	return this.movieApiService.getMostPopularMoviesId().pipe(
+      mergeMap(mostPopularMoviesId => forkJoin(mostPopularMoviesId.map(id => this.getMovieDetails(id)))))
+    .pipe(
+      map(topMovies=> topMovies.map(topMovie=> imdbObjectToMovie(topMovie))));
    }
 
-  getMoviePlot(movieId: string): Observable<any> {
+  getMovieDetails(movieId: string): Observable<any> {
 
   	return this.movieApiService.getMovieDetail(movieId);
   }
