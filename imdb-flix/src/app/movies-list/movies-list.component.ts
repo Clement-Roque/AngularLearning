@@ -15,7 +15,7 @@ import { MovieService } from '../movie.service'
 
 export class MoviesListComponent implements OnInit {
 
-	movies: Movie[];
+	topMovies: Movie[];
 
   constructor(private MovieService : MovieService) { }
 
@@ -26,7 +26,7 @@ export class MoviesListComponent implements OnInit {
 
   getTopMovies():void{
 
-  	this.MovieService.getTopMovies().subscribe(topMovies => this.movies = topMovies);
+  	this.MovieService.getTopMovies().subscribe(topMovies => this.topMovies = topMovies);
   }
 
 }

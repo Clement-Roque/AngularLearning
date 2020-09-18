@@ -28,12 +28,11 @@ export class MovieService {
 
   constructor(private movieApiService: ImdbService) { }
 
-  getTopMovies(): Observable<any[]>{
+  getTopMovies(): Observable<Movie[]>{
 
   	return this.movieApiService.getMostPopularMoviesId().pipe(
-      mergeMap(mostPopularMoviesId => forkJoin(mostPopularMoviesId.map(id => this.getMovieDetails(id)))))
-    .pipe(
-      map(topMovies=> topMovies.map(topMovie=> imdbObjectToMovie(topMovie))));
+      mergeMap(mostPopularMoviesId => forkJoin(mostPopularMoviesId.map(id => this.getMovieDetails(id))))).pipe(
+        map(topMovies=> topMovies.map(topMovie=> imdbObjectToMovie(topMovie))));
    }
 
   getMovieDetails(movieId: string): Observable<any> {
