@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { Movie } from './movie';
 
 const MOST_POPULAR_MOVIE : string = 'MostPopularMovies/';
+const MOVIE_BY_TITLE: string = "Title/"
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +21,20 @@ export class ImdbService {
 
   	const requestUrl = environment.MOVIE_API_BASE_URL+MOST_POPULAR_MOVIE+environment.MOVIE_API_KEY;
 
-  	// return this.httpClient.get<object[]>(requestUrl).pipe(
-   //    map(imdbObject => imdbObject['items']),
-  	// 	catchError(this.handleError<object[]>('getMostPopularMovie', [])));
-
-    return of(JSON_MOVIES.map(imdbObject => imdbObject['id']));
+  	return this.httpClient.get<object[]>(requestUrl).pipe(
+      map(imdbObjects => imdbObjects['items'].slice(0,4)),
+  	  catchError(this.handleError<object[]>('getMostPopularMovie', [])))
+    .pipe(map(imdbObjects => imdbObjects.map(imdbObject => imdbObject['id'])));
 
   }
 
   public getMovieDetail(movieId: string): Observable<any> {
 
-    return from(JSON_MOVIES.filter(movie=> movie.id===movieId).map(movie=> movie));
+    const requestUrl = environment.MOVIE_API_BASE_URL+MOVIE_BY_TITLE+environment.MOVIE_API_KEY+'/'+movieId;
+
+    return this.httpClient.get<object[]>(requestUrl).pipe(
+      map(imdbMovie => imdbMovie),
+      catchError(this.handleError<object[]>('getMovieDetail', [])))
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
