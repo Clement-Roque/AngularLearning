@@ -7,10 +7,11 @@ describe('ImdbService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ImdbService);
   });
 
   it('should be created', () => {
+
+  	service = TestBed.get(ImdbService);
     expect(service).toBeTruthy();
   });
 });
